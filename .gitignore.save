@@ -1,0 +1,21 @@
+# Compiled class files
+*.class
+
+# Output directories
+bin/
+out/
+
+# IDE settings
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
