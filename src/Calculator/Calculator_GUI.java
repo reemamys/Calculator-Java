@@ -13,6 +13,8 @@ public class Calculator_GUI extends JFrame implements ActionListener{
 	
 	JTextField inputField, resultField;
 	
+	JLabel inputLabel, resultLabel;
+	
 	double firstNum, secondNum;
 	String operator;
 	Calculator calc;
@@ -49,52 +51,52 @@ public class Calculator_GUI extends JFrame implements ActionListener{
 		
 		//********** Number Buttons **********
 		zero = new JButton("0");
-		zero.setBounds(110, 420, 80, 80);
+		zero.setBounds(110, 370, 80, 80);
 		panel.add(zero);
 		zero.addActionListener(this);
 		
 		one = new JButton("1");
-		one.setBounds(20, 330, 80, 80);
+		one.setBounds(20, 280, 80, 80);
 		panel.add(one);
 		one.addActionListener(this);
 		
 		two = new JButton("2");
-		two.setBounds(110, 330, 80, 80);
+		two.setBounds(110, 280, 80, 80);
 		panel.add(two);
 		two.addActionListener(this);
 		
 		three = new JButton("3");
-		three.setBounds(200, 330, 80, 80);
+		three.setBounds(200, 280, 80, 80);
 		panel.add(three);
 		three.addActionListener(this);
 		
 		four = new JButton("4");
-		four.setBounds(20, 240, 80, 80);
+		four.setBounds(20, 190, 80, 80);
 		panel.add(four);
 		four.addActionListener(this);
 		
 		five = new JButton("5");
-		five.setBounds(110, 240, 80, 80);
+		five.setBounds(110, 190, 80, 80);
 		panel.add(five);
 		five.addActionListener(this);
 		
 		six = new JButton("6");
-		six.setBounds(200, 240, 80, 80);
+		six.setBounds(200, 190, 80, 80);
 		panel.add(six);
 		six.addActionListener(this);
 		
 		seven = new JButton("7");
-		seven.setBounds(20, 150, 80, 80);
+		seven.setBounds(20, 100, 80, 80);
 		panel.add(seven);
 		seven.addActionListener(this);
 		
 		eight = new JButton("8");
-		eight.setBounds(110, 150, 80, 80);
+		eight.setBounds(110, 100, 80, 80);
 		panel.add(eight);
 		eight.addActionListener(this);
 		
 		nine = new JButton("9");
-		nine.setBounds(200, 150, 80, 80);
+		nine.setBounds(200, 100, 80, 80);
 		panel.add(nine);
 		nine.addActionListener(this);
 		
@@ -102,32 +104,32 @@ public class Calculator_GUI extends JFrame implements ActionListener{
 		
 		//********** Operation Buttons *****a*****
 		addButton = new JButton("+");
-		addButton.setBounds(290, 420, 80, 80);
+		addButton.setBounds(290, 370, 80, 80);
 		panel.add(addButton);
 		addButton.addActionListener(this);
 		
 		subtractButton = new JButton("-");
-		subtractButton.setBounds(290, 330, 80, 80);
+		subtractButton.setBounds(290, 280, 80, 80);
 		panel.add(subtractButton);
 		subtractButton.addActionListener(this);
 		
 		multiplyButton = new JButton("*");
-		multiplyButton.setBounds(290, 240, 80, 80);
+		multiplyButton.setBounds(290, 190, 80, 80);
 		panel.add(multiplyButton);
 		multiplyButton.addActionListener(this);
 
 		divideButton = new JButton("/");
-		divideButton.setBounds(290, 150, 80, 80);
+		divideButton.setBounds(290, 100, 80, 80);
 		panel.add(divideButton);
 		divideButton.addActionListener(this);
 		
 		equalButton = new JButton("=");
-		equalButton.setBounds(200, 420, 80, 80);
+		equalButton.setBounds(200, 370, 80, 80);
 		panel.add(equalButton);
 		equalButton.addActionListener(this);
 		
 		decimalButton = new JButton(".");
-		decimalButton.setBounds(20, 420, 80, 80);
+		decimalButton.setBounds(20, 370, 80, 80);
 		panel.add(decimalButton);
 		decimalButton.addActionListener(this);
 		
@@ -143,6 +145,17 @@ public class Calculator_GUI extends JFrame implements ActionListener{
 		resultField.setBounds(20, 500, 360, 50);
 		panel.add(resultField);
 		resultField.addActionListener(this);
+		
+		
+		
+		//********** Labels **********
+		inputLabel = new JLabel("Input");
+		inputLabel.setBounds(20, 0, 200, 20);
+		panel.add(inputLabel);
+		
+		resultLabel = new JLabel("Result");
+		resultLabel.setBounds(20, 480, 200, 20);
+		panel.add(resultLabel);
 		
 		this.setVisible(true);
 		
@@ -189,7 +202,13 @@ public class Calculator_GUI extends JFrame implements ActionListener{
 			case "+": result = calc.add(firstNum, secondNum); break;
 			case "-": result = calc.subtract(firstNum, secondNum); break;
 			case "*": result = calc.multiply(firstNum, secondNum); break;
-			case "/": result = calc.divide(firstNum, secondNum); break;
+			case "/": 
+				if(secondNum == 0) {
+					resultField.setText("Error: Division by zero");
+					return;
+				}
+				result = calc.divide(firstNum, secondNum); 
+				break;
 			}
 			resultField.setText(String.valueOf(result));
 			inputField.setText("");
